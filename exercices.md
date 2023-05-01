@@ -90,7 +90,7 @@ podman save -o [file_name].tar [registry:port]/[image_name]:[tag]
 
 # Complete docker file
 
-link:https://github.com/psehgaft/Red-Hat-Certified-Specialist-in-Containers-and-Kubernetes?organization=psehgaft&organization=psehgaft[Dockerfile]
+(https://github.com/psehgaft/Red-Hat-Certified-Specialist-in-Containers-and-Kubernetes?organization=psehgaft&organization=psehgaft)[Dockerfile]
 
 ```Dockerfile
 #Please use image registry.access.redhat.com/ubi8/ubi:8.4
