@@ -120,32 +120,49 @@ CMD
 ```
 
 ```Dockerfile
-#Please use image registry.access.redhat.com/ubi8/ubi:8.4
-FROM registry.access.redhat.com/ubi/ubi:8.4
-#Set yourself as the Maintainer of this image.
+# Please use image registry.access.redhat.com/ubi8/ubi:8.4
+FROM registry.access.redhat.com/ubi8/ubi:8.4
+
+# Set yourself as the Maintainer of this image.
 MANTAINER psehgaft
-#Provide a brief description of the image.
-LABEL description= "Web server from Dockerfile"
-#Install nginx and unzip
+
+# Provide a brief description of the image.
+LABEL description="Web server from Dockerfile"
+
+# Install nginx and unzip
 RUN yum install *y nginx unzip
-#Use ENV to set the variable PORT to 90
+
+# Use ENV to set the variable PORT to 90
 ENV PORT=90
-#Use the variable $PORT to expose the set port
+
+# Use the variable $PORT to expose the set port
 EXPOSE $PORT
-#Copy nginx_conf.zip to /tmp/
+
+# Copy nginx_conf.zip to /tmp/
 COPY nginx_conf.zip /tmp/
-#Extract /tmp/nginx_conf.zip to /etc/nginx and overwrite any existing files (hint use -o and -d options for unzip)
+
+# Extract /tmp/nginx_conf.zip to /etc/nginx and overwrite any existing files (hint use -o and -d options for unzip)
 RUN unzip -o /tmp/nginx_conf.zip -d /etc/nginx
-#Extract llama_cart.tar to /usr/share/nginx/html/
+
+# Extract llama_cart.tar to /usr/share/nginx/html/
 ADD llama_cart.tar /usr/share/nginx/html/
-#Set the workdir to /tar_file/ and copy llama_cart.tar to this directory without uncompressing it.
+
+# Set the workdir to /tar_file/ and copy llama_cart.tar to this directory without uncompressing it.
 WORKDIR /tar_file/
 COPY llama_cart.tar .
-#Set the container to start "nginx" with options "-g" and "daemon off" as overwritable options(hint: use ENTRYPOINT and CMD).
+
+# Set the container to start "nginx" with options "-g" and "daemon off" as overwritable options(hint: use ENTRYPOINT and CMD).
 ENTRYPOINT ["nginx"]
 CMD ["-g", "daemon off"]
 ```
 
+# Build container from tar file
+
+On Dockerfile path:
+
+```sh
+podman build -t [image_name]:[tag] [working_dir]
+```
 
 
 
