@@ -164,5 +164,9 @@ On Dockerfile path:
 podman build -t [image_name]:[tag] [working_dir]
 ```
 
+# OCP deploy APP from Git
 
+```sh
+oc new-app --
+```
 
